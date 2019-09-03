@@ -1,0 +1,46 @@
+{
+  "name": "Bahamut_Downloader",
+  "version": "1.0.0",
+  "description": "Bahamut downloader",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
+    "deploy": "electron-builder build --mac --win --publish always"
+  },
+  "build": {
+    "appId": "com.downloader.app",
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ]
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "mac": {
+      "category": "com.samuelhuang.app"
+    }
+  },
+  "keywords": [],
+  "author": "Samuel",
+  "license": "ISC",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "fs": "0.0.1-security",
+    "http": "0.0.0",
+    "math": "0.0.3",
+    "open": "^6.4.0",
+    "path": "^0.12.7",
+    "request": "^2.88.0",
+    "set-cookie-parser": "^2.3.8"
+  },
+  "devDependencies": {
+    "electron": "^6.0.1",
+    "electron-builder": "^21.2.0",
+    "electron-packager": "^14.0.4"
+  }
+}
