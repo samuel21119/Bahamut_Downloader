@@ -50,6 +50,13 @@ function input() {
                 stage = -1;
             }
             break;
+        case 4:
+            downloaded = 0;
+            hide('send', true);
+            hide('progress', false); 
+            out.innerText = TITLE;
+            download(1, 1);
+            stage = -1; 
         case -1:
             out.innerText = 'Please input forum link: ';
             stage = 1;
@@ -85,28 +92,25 @@ function Get_Page(link) {
             error();
             return;
         }
+        const $ = cheerio.load(body);
         var keyword = '...<a href="?page=';
         var index = body.indexOf(keyword) + keyword.length;
-        if (index < keyword.length)
-            error();
-        var page = '';
-        while (body[index] != '&')
-            page += body[index++];
-        PAGES = parseInt(page);
-        document.querySelector('.output').innerText = `Total pages: ${page}\nInput download photo range(ex: 1 5):`;
-
-        keyword = '<h1 class="c-post__header__title ">';
-        index = body.indexOf(keyword) + keyword.length;
         if (index < keyword.length) {
-            error();
-            return;
+            PAGES = 1;
+            document.querySelector('.output').innerText = `Total pages: 1\nPress enter to download.`;
+            stage = 4;
+        }else {
+            var page = '';
+            while (body[index] != '&')
+                page += body[index++];
+            PAGES = parseInt(page);
+            document.querySelector('.output').innerText = `Total pages: ${page}\nInput download photo range(ex: 1 5):`;
+            stage = 3;
         }
-        TITLE = '';
-        while (body[index] != '<' || body[index + 1] != '/' || body[index + 2] != 'h' || body[index + 3] != '1')
-            TITLE += body[index++];
-        TITLE = replace_str(TITLE);
-        stage = 3;
-    });
+        TITLE = replace_str($('.c-post__header__title').text());
+        if (TITLE === '')
+        console.log(TITLE);
+     });
 }
 function download(start, end) {
     var p = path.join(down_path, TITLE);

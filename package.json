@@ -1,6 +1,6 @@
 {
   "name": "Bahamut_Downloader",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Bahamut downloader",
   "main": "main.js",
   "scripts": {
