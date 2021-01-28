@@ -39,7 +39,7 @@
     "set-cookie-parser": "^2.3.8"
   },
   "devDependencies": {
-    "electron": "^7.2.4",
+    "electron": "^9.4.0",
     "electron-builder": "^21.2.0",
     "electron-packager": "^14.0.4"
   }
